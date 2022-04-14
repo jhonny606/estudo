@@ -1,4 +1,3 @@
-saldo = 0
 def menu():
     print('MENU')
     print('''[1]Abrir Conta
@@ -14,29 +13,38 @@ def menu():
 
 def opcao_1():
     print('Opção escolhida: Abrir Conta')
+    global saldoInicial, saldoAtual
+    saldoAtual = 0
     nome = input('Informe seu nome: ')
     saldoInicial = int(input('Saldo inicial: '))
-    saldo = saldo + saldoInicial
-    print('Saldo atual de {}'.format(saldo))
-
-    return nome, saldo
+    saldoAtual = saldoAtual + saldoInicial
+    print('Saldo atual de {}'.format(saldoAtual))
+    return nome, saldoInicial, saldoAtual
 
 
 def opcao_2():
     print('Opção escolhida: Realizar depósito')
+    global valor, saldoAtual
     valor = int(input('Valor do depósito: '))
     if valor < 1:
         print('ação inválida!')
     else:
-        print('Depósito realizado')
+        saldoAtual = valor + saldoAtual
+        print('Depósito realizado, saldo atual de {}'.format(saldoAtual))
+        return saldoAtual, valor
 
 def opcao_3():
     print('Opção escolhida: Realizar Saque')
+    global saldoAtual
     saque = int(input('Valor do saque: '))
     if saque <= 0:
         print('ação inválida!')
-    elif saldo < saque:
-        print('Saldo insuficiente')
+    elif saldoAtual < saque:
+        print('Saldo insuficiente. O saldo atual é de R${}'.format(saldoAtual))
+    else:
+        saldoAtual = saldoAtual - saque
+        print('Saque realizado. Saldo atual de R${}'.format(saldoAtual))
+        return saldoAtual
 
 def opcao_4():
     print('Opção escolhida: Aplicar Juros')
@@ -71,6 +79,7 @@ while(escolha != '7'):
         opcao_6()
     elif escolha == '7':
         print('Saindo...')
+        break
     else:
         print('Opção desconhecida!')
 
