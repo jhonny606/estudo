@@ -1,85 +1,85 @@
-def menu():
-    print('MENU')
-    print('''[1]Abrir Conta
-[2]Realizar Depósito
-[3]Realizar Saque
-[4]Aplicar Juros
-[5]Simular Empréstimo
-[6]Extrato
-[7]Sair''')
-    item = input('Selecione a opção desejada: ')
-    return item
+import random
 
+jogadorUm = input('Informe o nome do jogador 1:')
+jogadorDois = input('Informe o nome do jogador 2:')
 
-def opcao_1():
-    print('Opção escolhida: Abrir Conta')
-    global saldoInicial, saldoAtual
-    saldoAtual = 0
-    nome = input('Informe seu nome: ')
-    saldoInicial = int(input('Saldo inicial: '))
-    saldoAtual = saldoAtual + saldoInicial
-    print('Saldo atual de {}'.format(saldoAtual))
-    return nome, saldoInicial, saldoAtual
+def dadoCasa(numeroCasa):
+        
+    jogarNovamente = random.randint(1, 6)
 
-
-def opcao_2():
-    print('Opção escolhida: Realizar depósito')
-    global valor, saldoAtual
-    valor = int(input('Valor do depósito: '))
-    if valor < 1:
-        print('ação inválida!')
+    if jogarNovamente == 1:
+        numeroCasa = numeroCasa + 1
+        print('Avance uma casa.')
+    elif jogarNovamente == 3:
+        numeroCasa = numeroCasa - 1
+        print('Volte uma casa.')
+    elif jogarNovamente == 6:
+        numeroCasa = numeroCasa - numeroCasa
+        print('Você perdeu, volte ao inicio.')    
     else:
-        saldoAtual = valor + saldoAtual
-        print('Depósito realizado, saldo atual de {}'.format(saldoAtual))
-        return saldoAtual, valor
+        print('O jogo quebrou kk')
+    return jogarNovamente, numeroCasa
 
-def opcao_3():
-    print('Opção escolhida: Realizar Saque')
-    global saldoAtual
-    saque = int(input('Valor do saque: '))
-    if saque <= 0:
-        print('ação inválida!')
-    elif saldoAtual < saque:
-        print('Saldo insuficiente. O saldo atual é de R${}'.format(saldoAtual))
-    else:
-        saldoAtual = saldoAtual - saque
-        print('Saque realizado. Saldo atual de R${}'.format(saldoAtual))
-        return saldoAtual
+#=====================================================================#
 
-def opcao_4():
-    print('Opção escolhida: Aplicar Juros')
-    juros = int(input('Taxa de juros: '))
-    if juros <= 0:
-        print('A taxa deve ser maior que zero.')
+def morreCasa(numeroJogador):
+        
+    print('Você Morreu. Jogador {} perdeu.'.format(numeroJogador))
 
-def opcao_5():
-    print('Opção escolhida: Simular Empréstimo')
-    emprestimo = int(input('Valor do empréstimo: '))
-    jurosMensal = int(input('Juros mensal: '))
-    prcelas = int(input('Quantidade de parcelas: '))
+    return numeroJogador
 
-def opcao_6():
-    print('Opção escolhida: Extrato')
+#=====================================================================#
 
+def terFilhosCasa(numeroJogador):
+    print('Você teve filho! Jogando dado...')
+    dadoCasa(6)
+    print(dadoCasa)
 
-escolha = ''
-while(escolha != '7'):
-    escolha = menu()
-    if escolha == '1':
-        opcao_1()
-    elif escolha == '2':
-        opcao_2()
-    elif escolha == '3':
-        opcao_3()
-    elif escolha == '4':
-        opcao_4()
-    elif escolha == '5':
-        opcao_5()
-    elif escolha == '6':
-        opcao_6()
-    elif escolha == '7':
-        print('Saindo...')
-        break
-    else:
-        print('Opção desconhecida!')
+    return numeroJogador, dadoCasa()
 
+#=====================================================================#
+
+def formaturaCasa(numeroJogador):
+    print('Você se formou!')
+    rodarDados
+    print(rodarDados)
+
+    return numeroJogador
+
+#=====================================================================#
+
+def desafioMatematicoCasa(numeroJogador):
+
+    return numeroJogador
+
+#=====================================================================#
+
+def rodarDados(nJogador):
+    numeroCasa = 0
+    rodarDado = random.randint(1, 6)
+    print('Avance {} casas'.format(rodarDado))
+    numeroCasa = numeroCasa + rodarDado
+    print('Sua casa atual é {}'.format(numeroCasa))
+    if numeroCasa == 1 or numeroCasa == 3 or numeroCasa == 10 or numeroCasa == 17:
+        dadoCasa(1)
+    elif numeroCasa == 2 or numeroCasa == 8 or numeroCasa == 18:
+        morreCasa(1)
+    elif numeroCasa == 4 or numeroCasa == 11 or numeroCasa == 19:
+        desafioMatematicoCasa(1)
+    elif numeroCasa == 5:
+        formaturaCasa(1)
+    elif numeroCasa == 6 or numeroCasa == 9 or numeroCasa == 13:
+        terFilhosCasa(1)
+    elif numeroCasa == 7:
+        casarCasa(1)
+    elif numeroCasa == 12:
+        divorciarCasa(1)
+    elif numeroCasa == 14:
+        loteriaCasa(1)
+    elif numeroCasa == 15:
+        ficarFamosoCasa(1)
+    elif numeroCasa == 16:
+        casarNovamenteCasa(1)
+    elif numeroCasa == 20:
+            voltarCasas(1)   
+    return rodarDado, numeroCasa
